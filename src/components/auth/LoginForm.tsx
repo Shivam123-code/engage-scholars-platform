@@ -1,9 +1,10 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { 
   Card, 
   CardContent, 
@@ -15,7 +16,7 @@ import {
 import { useToast } from '@/hooks/use-toast';
 
 interface LoginFormProps {
-  onLogin: (email: string, password: string) => void;
+  onLogin: (email: string, password: string, role: string) => void;
   isLoading?: boolean;
 }
 
@@ -25,8 +26,10 @@ const LoginForm: React.FC<LoginFormProps> = ({
 }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('parent');
   const [errors, setErrors] = useState<{email?: string; password?: string}>({});
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const validateForm = () => {
     const newErrors: {email?: string; password?: string} = {};
@@ -52,7 +55,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
     
     if (validateForm()) {
       try {
-        onLogin(email, password);
+        onLogin(email, password, role);
       } catch (error) {
         toast({
           title: "Login failed",
@@ -108,6 +111,25 @@ const LoginForm: React.FC<LoginFormProps> = ({
               <p className="text-sm text-destructive">{errors.password}</p>
             )}
           </div>
+          
+          <div className="space-y-2">
+            <Label>I am a:</Label>
+            <RadioGroup 
+              value={role} 
+              onValueChange={setRole}
+              className="flex space-x-4"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="parent" id="login-parent" />
+                <Label htmlFor="login-parent">Parent</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="teacher" id="login-teacher" />
+                <Label htmlFor="login-teacher">Teacher</Label>
+              </div>
+            </RadioGroup>
+          </div>
+          
           <Button 
             type="submit" 
             className="w-full"
