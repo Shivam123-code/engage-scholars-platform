@@ -47,11 +47,6 @@ const EventCalendar: React.FC<EventCalendarProps> = ({
     return Array.from(eventsByDate.keys()).map(dateString => new Date(dateString));
   }, [eventsByDate]);
   
-  const getDayClassNames = (date: Date) => {
-    const hasEvents = eventsByDate.has(date.toDateString());
-    return hasEvents ? 'font-medium text-primary' : '';
-  };
-  
   return (
     <Card className="glass-card">
       <CardHeader>
@@ -74,14 +69,14 @@ const EventCalendar: React.FC<EventCalendarProps> = ({
             classNames={{
               day_today: "bg-primary/10",
               day_selected: "bg-primary text-primary-foreground",
-              day: getDayClassNames
             }}
             components={{
               DayContent: ({ date }) => {
                 const dateEvents = eventsByDate.get(date.toDateString());
+                const hasEvents = eventsByDate.has(date.toDateString());
                 
                 return (
-                  <div className="relative h-full w-full p-2 flex items-center justify-center">
+                  <div className={`relative h-full w-full p-2 flex items-center justify-center ${hasEvents ? 'font-medium text-primary' : ''}`}>
                     {date.getDate()}
                     {dateEvents && dateEvents.length > 0 && (
                       <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-primary rounded-full" />
