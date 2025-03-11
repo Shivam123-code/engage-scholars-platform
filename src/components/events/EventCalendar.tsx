@@ -49,7 +49,7 @@ const EventCalendar: React.FC<EventCalendarProps> = ({
   
   const getDayClassNames = (date: Date) => {
     const hasEvents = eventsByDate.has(date.toDateString());
-    return hasEvents ? 'font-medium text-primary' : undefined;
+    return hasEvents ? 'font-medium text-primary' : '';
   };
   
   return (
@@ -74,7 +74,7 @@ const EventCalendar: React.FC<EventCalendarProps> = ({
             classNames={{
               day_today: "bg-primary/10",
               day_selected: "bg-primary text-primary-foreground",
-              day: date => getDayClassNames(date) || ""
+              day: getDayClassNames
             }}
             components={{
               DayContent: ({ date }) => {

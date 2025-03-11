@@ -1,12 +1,21 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { 
+  Calendar, 
+  MessageSquare, 
+  Users, 
+  Plus, 
+  FileEdit, 
+  PieChart, 
+  TrendingUp, 
+  UserCheck,
+  Bell 
+} from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Calendar, MessageSquare, Users, Plus, FileEdit, PieChart, TrendingUp, UserCheck } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import EventCard, { EventProps } from '../events/EventCard';
 import { StudentProps } from '../students/StudentCard';
@@ -41,7 +50,6 @@ const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
   const [showAddAnnouncement, setShowAddAnnouncement] = useState(false);
   const { toast } = useToast();
   
-  // Get upcoming events (next 2)
   const upcomingEvents = events
     .filter(event => event.date > new Date())
     .sort((a, b) => a.date.getTime() - b.date.getTime())
@@ -58,7 +66,6 @@ const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
     }
   };
   
-  // Calculate class performance metrics
   const performanceMetrics = {
     excellent: students.filter(s => s.performanceStatus === 'excellent').length,
     good: students.filter(s => s.performanceStatus === 'good').length,
@@ -66,7 +73,6 @@ const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
     needsImprovement: students.filter(s => s.performanceStatus === 'needs-improvement').length,
   };
   
-  // Calculate attendance metrics
   const attendanceMetrics = students.reduce(
     (acc, student) => {
       acc.present += student.attendance.present;
@@ -78,7 +84,6 @@ const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
     { present: 0, absent: 0, late: 0, total: 0 }
   );
   
-  // Get initials for avatar fallback
   const getInitials = (name: string) => {
     return name
       .split(' ')
@@ -123,7 +128,6 @@ const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
         
         <TabsContent value="overview" className="animate-slide-in">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {/* Class Summary */}
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg">Class Overview</CardTitle>
@@ -170,7 +174,6 @@ const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
               </CardContent>
             </Card>
             
-            {/* Performance Distribution */}
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg">
@@ -211,7 +214,6 @@ const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
               </CardContent>
             </Card>
             
-            {/* Attendance Breakdown */}
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg">
@@ -271,7 +273,6 @@ const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
               </CardContent>
             </Card>
             
-            {/* Recent Announcements */}
             <Card>
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
@@ -338,7 +339,6 @@ const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
               </CardContent>
             </Card>
             
-            {/* Upcoming Events */}
             <Card className="md:col-span-2">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
@@ -377,7 +377,6 @@ const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
             </CardHeader>
             <CardContent>
               <div className="space-y-6">
-                {/* Student list */}
                 <div className="border rounded-md">
                   <div className="grid grid-cols-4 gap-4 p-4 border-b font-medium text-sm">
                     <div>Student</div>
