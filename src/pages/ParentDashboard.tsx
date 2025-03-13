@@ -1,11 +1,14 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Bell, Calendar, MessageSquare, BookOpen, LogOut } from "lucide-react";
+import { Bell, Calendar, MessageSquare, BookOpen, LogOut, Send, PlusCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { Avatar } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 
 const ParentDashboard = () => {
   const navigate = useNavigate();
@@ -166,11 +169,78 @@ const ParentDashboard = () => {
                 <CardTitle>Messages</CardTitle>
                 <CardDescription>Communicate with your children's teachers</CardDescription>
               </CardHeader>
-              <CardContent>
-                <p className="text-center py-8 text-muted-foreground">
-                  This feature will be implemented with Supabase real-time messaging.
-                </p>
+              <CardContent className="space-y-4">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                      <Avatar>
+                        <div className="bg-primary text-primary-foreground flex h-10 w-10 items-center justify-center rounded-full">
+                          MS
+                        </div>
+                      </Avatar>
+                      <div>
+                        <p className="font-medium">Ms. Smith</p>
+                        <p className="text-sm text-muted-foreground">Math Teacher</p>
+                      </div>
+                    </div>
+                    <Badge>New</Badge>
+                  </div>
+                  <Card>
+                    <CardContent className="p-4">
+                      <p className="text-sm">
+                        Hello! I wanted to let you know that Emily has been doing great in her
+                        math assignments. She scored 95% on the last quiz.
+                      </p>
+                      <p className="text-xs text-muted-foreground text-right mt-2">
+                        Received today at 2:30 PM
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                      <Avatar>
+                        <div className="bg-blue-500 text-white flex h-10 w-10 items-center justify-center rounded-full">
+                          MJ
+                        </div>
+                      </Avatar>
+                      <div>
+                        <p className="font-medium">Mr. Johnson</p>
+                        <p className="text-sm text-muted-foreground">Science Teacher</p>
+                      </div>
+                    </div>
+                  </div>
+                  <Card>
+                    <CardContent className="p-4">
+                      <p className="text-sm">
+                        Reminder: The science project is due next Friday. Jacob should bring his 
+                        materials to class tomorrow so I can check his progress.
+                      </p>
+                      <p className="text-xs text-muted-foreground text-right mt-2">
+                        Received yesterday at 4:15 PM
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                <div className="flex items-center space-x-2 pt-4">
+                  <input 
+                    type="text" 
+                    placeholder="Type a message..." 
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background"
+                  />
+                  <Button size="icon" className="shrink-0">
+                    <Send className="h-4 w-4" />
+                  </Button>
+                </div>
               </CardContent>
+              <CardFooter className="flex justify-center border-t pt-4">
+                <p className="text-sm text-muted-foreground">
+                  This feature will be connected to Supabase real-time messaging.
+                </p>
+              </CardFooter>
             </Card>
           </TabsContent>
           
@@ -180,11 +250,64 @@ const ParentDashboard = () => {
                 <CardTitle>School Events</CardTitle>
                 <CardDescription>Stay updated with upcoming school events</CardDescription>
               </CardHeader>
-              <CardContent>
-                <p className="text-center py-8 text-muted-foreground">
-                  The events calendar will be implemented with Supabase data storage.
-                </p>
+              <CardContent className="space-y-4">
+                <div className="space-y-4">
+                  <Card className="overflow-hidden">
+                    <div className="bg-primary h-2" />
+                    <CardContent className="p-4">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <h3 className="font-semibold">Parent-Teacher Conference</h3>
+                          <p className="text-sm text-muted-foreground">
+                            Meet with teachers to discuss your child's progress
+                          </p>
+                        </div>
+                        <Badge variant="outline" className="bg-primary/10">3 days</Badge>
+                      </div>
+                      <div className="flex items-center mt-4 text-sm text-muted-foreground">
+                        <Calendar className="h-4 w-4 mr-2" />
+                        <span>June 15, 2023 • 3:00 PM - 6:00 PM</span>
+                      </div>
+                      <div className="flex items-center mt-1 text-sm text-muted-foreground">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 mr-2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <span>School Auditorium</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="overflow-hidden">
+                    <div className="bg-blue-500 h-2" />
+                    <CardContent className="p-4">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <h3 className="font-semibold">Science Fair</h3>
+                          <p className="text-sm text-muted-foreground">
+                            Annual school science fair with student projects
+                          </p>
+                        </div>
+                        <Badge variant="outline" className="bg-blue-500/10">2 weeks</Badge>
+                      </div>
+                      <div className="flex items-center mt-4 text-sm text-muted-foreground">
+                        <Calendar className="h-4 w-4 mr-2" />
+                        <span>June 28, 2023 • 10:00 AM - 2:00 PM</span>
+                      </div>
+                      <div className="flex items-center mt-1 text-sm text-muted-foreground">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 mr-2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <span>School Gymnasium</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
               </CardContent>
+              <CardFooter className="flex justify-between border-t pt-4">
+                <p className="text-sm text-muted-foreground">
+                  This feature will be connected to Supabase data storage.
+                </p>
+                <Button variant="outline" size="sm">
+                  <Calendar className="h-4 w-4 mr-2" />
+                  View All Events
+                </Button>
+              </CardFooter>
             </Card>
           </TabsContent>
           
@@ -194,11 +317,81 @@ const ParentDashboard = () => {
                 <CardTitle>Academic Progress</CardTitle>
                 <CardDescription>Track your children's academic achievements</CardDescription>
               </CardHeader>
-              <CardContent>
-                <p className="text-center py-8 text-muted-foreground">
-                  Student progress tracking will be implemented with Supabase data storage.
-                </p>
+              <CardContent className="space-y-6">
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">Emily - Grade 5</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <p className="text-sm font-medium">Math</p>
+                        <p className="text-sm font-medium">94%</p>
+                      </div>
+                      <div className="h-2 rounded-full bg-muted overflow-hidden">
+                        <div className="h-full rounded-full bg-green-500" style={{ width: "94%" }} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <p className="text-sm font-medium">Science</p>
+                        <p className="text-sm font-medium">88%</p>
+                      </div>
+                      <div className="h-2 rounded-full bg-muted overflow-hidden">
+                        <div className="h-full rounded-full bg-green-500" style={{ width: "88%" }} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <p className="text-sm font-medium">English</p>
+                        <p className="text-sm font-medium">91%</p>
+                      </div>
+                      <div className="h-2 rounded-full bg-muted overflow-hidden">
+                        <div className="h-full rounded-full bg-green-500" style={{ width: "91%" }} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <Separator />
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">Jacob - Grade 3</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <p className="text-sm font-medium">Math</p>
+                        <p className="text-sm font-medium">86%</p>
+                      </div>
+                      <div className="h-2 rounded-full bg-muted overflow-hidden">
+                        <div className="h-full rounded-full bg-green-500" style={{ width: "86%" }} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <p className="text-sm font-medium">Science</p>
+                        <p className="text-sm font-medium">92%</p>
+                      </div>
+                      <div className="h-2 rounded-full bg-muted overflow-hidden">
+                        <div className="h-full rounded-full bg-green-500" style={{ width: "92%" }} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between mb-1">
+                        <p className="text-sm font-medium">English</p>
+                        <p className="text-sm font-medium">79%</p>
+                      </div>
+                      <div className="h-2 rounded-full bg-muted overflow-hidden">
+                        <div className="h-full rounded-full bg-yellow-500" style={{ width: "79%" }} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </CardContent>
+              <CardFooter className="flex justify-between border-t pt-4">
+                <p className="text-sm text-muted-foreground">
+                  Last updated: June 8, 2023
+                </p>
+                <Button variant="outline" size="sm">
+                  Download Report
+                </Button>
+              </CardFooter>
             </Card>
           </TabsContent>
         </Tabs>
