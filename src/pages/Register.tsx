@@ -14,8 +14,11 @@ import {
   CardTitle 
 } from '@/components/ui/card';
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "@/components/common/LanguageSwitcher";
 
 const Register = () => {
+  const { t } = useLanguage();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -34,15 +37,15 @@ const Register = () => {
     }
     
     if (!email.trim()) {
-      newErrors.email = "Email is required";
+      newErrors.email = t.emailRequired;
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = "Email is invalid";
+      newErrors.email = t.emailInvalid;
     }
     
     if (!password) {
-      newErrors.password = "Password is required";
+      newErrors.password = t.passwordRequired;
     } else if (password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
+      newErrors.password = t.passwordMinLength;
     }
     
     if (password !== confirmPassword) {
@@ -76,6 +79,11 @@ const Register = () => {
       <div className="w-full max-w-md">
         <h1 className="text-3xl font-bold text-center mb-6 text-foreground">ParentConnect</h1>
         
+        {/* Language switcher at the top right */}
+        <div className="absolute top-4 right-4 z-10">
+          <LanguageSwitcher />
+        </div>
+        
         <Card className="glass-card">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold text-center">Create an account</CardTitle>
@@ -101,7 +109,7 @@ const Register = () => {
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t.email}</Label>
                 <Input
                   id="email"
                   type="email"
@@ -116,7 +124,7 @@ const Register = () => {
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">{t.password}</Label>
                 <Input
                   id="password"
                   type="password"
@@ -144,7 +152,7 @@ const Register = () => {
               </div>
               
               <div className="space-y-2">
-                <Label>I am a:</Label>
+                <Label>{t.iAmA}</Label>
                 <RadioGroup 
                   value={role} 
                   onValueChange={setRole}
@@ -152,11 +160,11 @@ const Register = () => {
                 >
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="parent" id="parent" />
-                    <Label htmlFor="parent">Parent</Label>
+                    <Label htmlFor="parent">{t.parent}</Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="teacher" id="teacher" />
-                    <Label htmlFor="teacher">Teacher</Label>
+                    <Label htmlFor="teacher">{t.teacher}</Label>
                   </div>
                 </RadioGroup>
               </div>
@@ -175,7 +183,7 @@ const Register = () => {
             <div className="text-sm text-center text-muted-foreground">
               Already have an account?{" "}
               <Link to="/login" className="text-primary hover:underline">
-                Sign in
+                {t.signIn}
               </Link>
             </div>
           </CardFooter>

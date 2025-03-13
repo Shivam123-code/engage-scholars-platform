@@ -16,31 +16,34 @@ import WellnessTracking from "./pages/WellnessTracking";
 import LearningInsights from "./pages/LearningInsights";
 import Community from "./pages/Community";
 import Messaging from "./pages/Messaging";
+import { LanguageProvider } from "./contexts/LanguageContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/parent-dashboard" element={<ParentDashboard />} />
-          <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
-          <Route path="/resource-hub" element={<ResourceHub />} />
-          <Route path="/wellness-tracking" element={<WellnessTracking />} />
-          <Route path="/learning-insights" element={<LearningInsights />} />
-          <Route path="/community" element={<Community />} />
-          <Route path="/messaging" element={<Messaging />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <LanguageProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/parent-dashboard" element={<ParentDashboard />} />
+            <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
+            <Route path="/resource-hub" element={<ResourceHub />} />
+            <Route path="/wellness-tracking" element={<WellnessTracking />} />
+            <Route path="/learning-insights" element={<LearningInsights />} />
+            <Route path="/community" element={<Community />} />
+            <Route path="/messaging" element={<Messaging />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </LanguageProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

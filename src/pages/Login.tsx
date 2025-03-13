@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import LoginForm from "@/components/auth/LoginForm";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Login = () => {
+  const { t } = useLanguage();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();

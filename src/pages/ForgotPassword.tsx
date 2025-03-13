@@ -13,8 +13,11 @@ import {
   CardTitle 
 } from '@/components/ui/card';
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "@/components/common/LanguageSwitcher";
 
 const ForgotPassword = () => {
+  const { t } = useLanguage();
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,12 +29,12 @@ const ForgotPassword = () => {
     setError("");
     
     if (!email) {
-      setError("Email is required");
+      setError(t.emailRequired);
       return;
     }
     
     if (!/\S+@\S+\.\S+/.test(email)) {
-      setError("Please enter a valid email address");
+      setError(t.emailInvalid);
       return;
     }
     
@@ -53,6 +56,11 @@ const ForgotPassword = () => {
       <div className="w-full max-w-md">
         <h1 className="text-3xl font-bold text-center mb-6 text-foreground">ParentConnect</h1>
         
+        {/* Language switcher at the top right */}
+        <div className="absolute top-4 right-4 z-10">
+          <LanguageSwitcher />
+        </div>
+        
         <Card className="glass-card">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold text-center">
@@ -69,7 +77,7 @@ const ForgotPassword = () => {
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email">{t.email}</Label>
                   <Input
                     id="email"
                     type="email"
@@ -112,7 +120,7 @@ const ForgotPassword = () => {
             <div className="text-sm text-center text-muted-foreground">
               Remember your password?{" "}
               <Link to="/login" className="text-primary hover:underline">
-                Back to login
+                {t.backToLogin}
               </Link>
             </div>
           </CardFooter>

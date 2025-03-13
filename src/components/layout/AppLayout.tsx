@@ -2,6 +2,7 @@
 import React, { ReactNode, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
+import LanguageSwitcher from '../common/LanguageSwitcher';
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -30,6 +31,12 @@ const AppLayout: React.FC<AppLayoutProps> = ({
         userName={userName}
         userAvatar={userAvatar}
       />
+      
+      {/* Language Switcher for easy access on all pages */}
+      <div className="fixed top-4 right-4 z-50">
+        <LanguageSwitcher />
+      </div>
+      
       <main className="flex-grow pt-16 transition-all duration-300 animate-fade-in">
         {children}
       </main>

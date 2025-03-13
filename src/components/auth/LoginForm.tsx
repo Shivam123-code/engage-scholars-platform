@@ -14,6 +14,7 @@ import {
   CardTitle 
 } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface LoginFormProps {
   onLogin: (email: string, password: string, role: string) => void;
@@ -24,6 +25,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
   onLogin,
   isLoading = false
 }) => {
+  const { t } = useLanguage();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('parent');
@@ -35,15 +37,15 @@ const LoginForm: React.FC<LoginFormProps> = ({
     const newErrors: {email?: string; password?: string} = {};
     
     if (!email) {
-      newErrors.email = 'Email is required';
+      newErrors.email = t.emailRequired;
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = 'Email is invalid';
+      newErrors.email = t.emailInvalid;
     }
     
     if (!password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = t.passwordRequired;
     } else if (password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
+      newErrors.password = t.passwordMinLength;
     }
     
     setErrors(newErrors);
@@ -69,15 +71,15 @@ const LoginForm: React.FC<LoginFormProps> = ({
   return (
     <Card className="w-full max-w-md mx-auto glass-card">
       <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-bold text-center">Welcome back</CardTitle>
+        <CardTitle className="text-2xl font-bold text-center">{t.welcomeBack}</CardTitle>
         <CardDescription className="text-center">
-          Enter your credentials to access your account
+          {t.credentials}
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">{t.email}</Label>
             <Input
               id="email"
               type="email"
@@ -92,12 +94,12 @@ const LoginForm: React.FC<LoginFormProps> = ({
           </div>
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">{t.password}</Label>
               <Link 
                 to="/forgot-password" 
                 className="text-sm text-primary hover:underline"
               >
-                Forgot password?
+                {t.forgotPassword}
               </Link>
             </div>
             <Input
@@ -113,7 +115,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
           </div>
           
           <div className="space-y-2">
-            <Label>I am a:</Label>
+            <Label>{t.iAmA}</Label>
             <RadioGroup 
               value={role} 
               onValueChange={setRole}
@@ -121,11 +123,11 @@ const LoginForm: React.FC<LoginFormProps> = ({
             >
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="parent" id="login-parent" />
-                <Label htmlFor="login-parent">Parent</Label>
+                <Label htmlFor="login-parent">{t.parent}</Label>
               </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="teacher" id="login-teacher" />
-                <Label htmlFor="login-teacher">Teacher</Label>
+                <Label htmlFor="login-teacher">{t.teacher}</Label>
               </div>
             </RadioGroup>
           </div>
@@ -135,15 +137,15 @@ const LoginForm: React.FC<LoginFormProps> = ({
             className="w-full"
             disabled={isLoading}
           >
-            {isLoading ? "Signing in..." : "Sign in"}
+            {isLoading ? t.signingIn : t.signIn}
           </Button>
         </form>
       </CardContent>
       <CardFooter className="flex flex-col space-y-2">
         <div className="text-sm text-center text-muted-foreground">
-          Don't have an account?{" "}
+          {t.noAccount}{" "}
           <Link to="/register" className="text-primary hover:underline">
-            Sign up
+            {t.signUp}
           </Link>
         </div>
       </CardFooter>
