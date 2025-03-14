@@ -8,6 +8,7 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { useLanguage, languages } from "@/contexts/LanguageContext";
+import { useToast } from "@/hooks/use-toast";
 
 interface LanguageSwitcherProps {
   variant?: "default" | "outline" | "secondary" | "ghost" | "link" | "destructive";
@@ -23,6 +24,17 @@ const LanguageSwitcher = ({
   showLabel = true
 }: LanguageSwitcherProps) => {
   const { language, setLanguage, t } = useLanguage();
+  const { toast } = useToast();
+
+  const handleLanguageChange = (langCode: string) => {
+    setLanguage(langCode);
+    const langName = languages.find(lang => lang.code === langCode)?.name || "English";
+    toast({
+      title: t.languageUpdated || "Language Updated",
+      description: `${langName}`,
+      duration: 2000
+    });
+  };
 
   return (
     <DropdownMenu>
@@ -38,7 +50,7 @@ const LanguageSwitcher = ({
         {languages.map((lang) => (
           <DropdownMenuItem 
             key={lang.code}
-            onClick={() => setLanguage(lang.code)}
+            onClick={() => handleLanguageChange(lang.code)}
             className={language === lang.code ? "bg-accent" : ""}
           >
             {lang.name}

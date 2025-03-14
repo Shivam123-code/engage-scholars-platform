@@ -1,42 +1,18 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Globe } from "lucide-react"; 
-import { 
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger 
-} from "@/components/ui/dropdown-menu";
-import { useLanguage, languages } from "@/contexts/LanguageContext";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "@/components/common/LanguageSwitcher";
 
 const Index = () => {
-  const { language, setLanguage, t } = useLanguage();
+  const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-secondary">
       <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
         {/* Language selector */}
         <div className="absolute top-4 right-4 z-10">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="flex items-center gap-2">
-                <Globe className="h-4 w-4" />
-                <span>{languages.find(lang => lang.code === language)?.name || "English"}</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              {languages.map((lang) => (
-                <DropdownMenuItem 
-                  key={lang.code}
-                  onClick={() => setLanguage(lang.code)}
-                  className={language === lang.code ? "bg-accent" : ""}
-                >
-                  {lang.name}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <LanguageSwitcher />
         </div>
 
         <div className="text-center">
