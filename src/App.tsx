@@ -11,8 +11,6 @@ import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
 import ParentDashboard from "./pages/ParentDashboard";
 import TeacherDashboard from "./pages/TeacherDashboard";
-import ResourceHub from "./pages/ResourceHub";
-import WellnessTracking from "./pages/WellnessTracking";
 import LearningInsights from "./pages/LearningInsights";
 import Community from "./pages/Community";
 import Messaging from "./pages/Messaging";
@@ -34,8 +32,6 @@ const App = () => (
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/parent-dashboard" element={<ParentDashboard />} />
             <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
-            <Route path="/resource-hub" element={<ResourceHub />} />
-            <Route path="/wellness-tracking" element={<WellnessTracking />} />
             <Route path="/learning-insights" element={<LearningInsights />} />
             <Route path="/community" element={<Community />} />
             <Route path="/messaging" element={<Messaging />} />

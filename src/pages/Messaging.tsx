@@ -3,14 +3,14 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Globe, Languages } from "lucide-react";
+import { ArrowLeft, Languages } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ChatInterface, { Message, ChatUser } from "@/components/messaging/ChatInterface";
 import TranslationSettings from "@/components/messaging/TranslationSettings";
+import { useLanguage, languages } from "@/contexts/LanguageContext";
 
 // Mock data
 const mockTeachers: ChatUser[] = [
@@ -69,21 +69,12 @@ const mockMessages: Record<string, Message[]> = {
   t3: [],
 };
 
-// Languages supported
-const languages = [
-  { code: "en", name: "English" },
-  { code: "es", name: "Spanish" },
-  { code: "fr", name: "French" },
-  { code: "zh", name: "Chinese" },
-  { code: "ar", name: "Arabic" },
-  { code: "hi", name: "Hindi" },
-];
-
 const Messaging = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const studentId = searchParams.get("student");
+  const { t, language } = useLanguage();
   
   const [selectedTeacherId, setSelectedTeacherId] = useState<string>("");
   const [messages, setMessages] = useState<Message[]>([]);
@@ -95,9 +86,15 @@ const Messaging = () => {
   
   // Translation settings
   const [isTranslationEnabled, setIsTranslationEnabled] = useState(false);
-  const [sourceLanguage, setSourceLanguage] = useState("en");
-  const [targetLanguage, setTargetLanguage] = useState("en");
+  const [sourceLanguage, setSourceLanguage] = useState(language);
+  const [targetLanguage, setTargetLanguage] = useState(language);
   const [isTranslating, setIsTranslating] = useState(false);
+  
+  // Update source and target languages when the app language changes
+  useEffect(() => {
+    setSourceLanguage(language);
+    setTargetLanguage(language);
+  }, [language]);
   
   useEffect(() => {
     if (selectedTeacherId) {
@@ -143,10 +140,10 @@ const Messaging = () => {
         // Show translation notification
         if (isTranslationEnabled && sourceLanguage !== targetLanguage) {
           toast({
-            title: "Message Translated",
-            description: `Your message was automatically translated from ${
+            title: t.messageTranslated || "Message Translated",
+            description: `${t.translatedFrom || "Your message was automatically translated from"} ${
               languages.find(l => l.code === sourceLanguage)?.name
-            } to ${
+            } ${t.translatedTo || "to"} ${
               languages.find(l => l.code === targetLanguage)?.name
             }`,
           });
@@ -178,8 +175,8 @@ const Messaging = () => {
     }
     
     toast({
-      title: "Language Updated",
-      description: `Translation ${type === 'source' ? 'source' : 'target'} language set to ${
+      title: t.languageUpdated || "Language Updated",
+      description: `${type === 'source' ? (t.translationSourceLang || "Translation source language set to") : (t.translationTargetLang || "Translation target language set to")} ${
         languages.find(l => l.code === value)?.name
       }`,
     });
@@ -199,12 +196,12 @@ const Messaging = () => {
           >
             <ArrowLeft className="h-5 w-5" />
           </Button>
-          <h1 className="text-2xl font-bold">Messages</h1>
+          <h1 className="text-2xl font-bold">{t.messages || "Messages"}</h1>
           
           {isTranslationEnabled && (
             <div className="ml-auto flex items-center text-sm">
               <Languages className="h-4 w-4 mr-1 text-primary" />
-              <span>Translation Active</span>
+              <span>{t.translation || "Translation"} {t.active || "Active"}</span>
             </div>
           )}
         </div>
@@ -216,9 +213,9 @@ const Messaging = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center">
-                  <span>Contacts</span>
+                  <span>{t.contacts || "Contacts"}</span>
                 </CardTitle>
-                <CardDescription>Select a teacher to message</CardDescription>
+                <CardDescription>{t.selectTeacher || "Select a teacher to message"}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 {mockTeachers.map(teacher => (
@@ -241,12 +238,12 @@ const Messaging = () => {
                         {teacher.isOnline ? (
                           <span className="flex items-center">
                             <span className="h-2 w-2 rounded-full bg-green-500 mr-1"></span>
-                            Online
+                            {t.online || "Online"}
                           </span>
                         ) : teacher.lastSeen ? (
-                          `Last seen ${new Date(teacher.lastSeen).toLocaleDateString()}`
+                          `${t.lastSeen || "Last seen"} ${new Date(teacher.lastSeen).toLocaleDateString()}`
                         ) : (
-                          'Offline'
+                          t.offline || "Offline"
                         )}
                       </p>
                     </div>
@@ -261,7 +258,6 @@ const Messaging = () => {
               sourceLanguage={sourceLanguage}
               targetLanguage={targetLanguage}
               onLanguageChange={handleLanguageChange}
-              languages={languages}
               className="mt-6"
             />
           </div>
@@ -277,7 +273,7 @@ const Messaging = () => {
             ) : (
               <Card className="h-full flex items-center justify-center">
                 <CardContent>
-                  <p className="text-muted-foreground">Select a teacher to start messaging</p>
+                  <p className="text-muted-foreground">{t.startMessaging || "Select a teacher to start messaging"}</p>
                 </CardContent>
               </Card>
             )}
