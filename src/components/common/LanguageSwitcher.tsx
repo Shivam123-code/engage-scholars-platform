@@ -7,7 +7,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import { useLanguage, languages } from "@/contexts/LanguageContext";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { languages } from "@/locales/translations";
 import { useToast } from "@/hooks/use-toast";
 
 interface LanguageSwitcherProps {
