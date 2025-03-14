@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Bell, MessageSquare, Calendar, Home, LogOut } from 'lucide-react';
+import { Menu, X, Bell, MessageSquare, Calendar, Home, LogOut, BrainCircuit, Users } from 'lucide-react';
 import AnimatedLogo from '../ui/AnimatedLogo';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -63,11 +63,20 @@ const Navbar: React.FC<NavbarProps> = ({
     { name: 'Dashboard', path: '/dashboard', icon: <Home className="h-4 w-4 mr-2" /> },
     { name: 'Messages', path: '/messaging', icon: <MessageSquare className="h-4 w-4 mr-2" /> },
     { name: 'Events', path: '/events', icon: <Calendar className="h-4 w-4 mr-2" /> },
+    { name: 'Learning Insights', path: '/learning-insights', icon: <BrainCircuit className="h-4 w-4 mr-2" /> },
+    { name: 'Community', path: '/community', icon: <Users className="h-4 w-4 mr-2" /> },
   ] : [
     { name: 'Home', path: '/', icon: null },
     { name: 'Features', path: '/#features', icon: null },
     { name: 'About', path: '/#about', icon: null },
   ];
+  
+  // Get appropriate dashboard path based on user role
+  const getDashboardPath = () => {
+    if (userRole === 'parent') return '/parent-dashboard';
+    if (userRole === 'teacher') return '/teacher-dashboard';
+    return '/';
+  };
   
   return (
     <nav 
@@ -91,20 +100,69 @@ const Navbar: React.FC<NavbarProps> = ({
           {/* Desktop navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center
-                    ${location.pathname === item.path
-                      ? 'text-primary bg-primary/5'
-                      : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
-                    }`}
-                >
-                  {item.icon}
-                  {item.name}
-                </Link>
-              ))}
+              {isAuthenticated ? (
+                <>
+                  <Link
+                    to={getDashboardPath()}
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center
+                      ${location.pathname === getDashboardPath()
+                        ? 'text-primary bg-primary/5'
+                        : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
+                      }`}
+                  >
+                    <Home className="h-4 w-4 mr-2" />
+                    Dashboard
+                  </Link>
+                  <Link
+                    to="/learning-insights"
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center
+                      ${location.pathname === '/learning-insights'
+                        ? 'text-primary bg-primary/5'
+                        : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
+                      }`}
+                  >
+                    <BrainCircuit className="h-4 w-4 mr-2" />
+                    Learning Insights
+                  </Link>
+                  <Link
+                    to="/community"
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center
+                      ${location.pathname === '/community'
+                        ? 'text-primary bg-primary/5'
+                        : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
+                      }`}
+                  >
+                    <Users className="h-4 w-4 mr-2" />
+                    Community
+                  </Link>
+                  <Link
+                    to="/messaging"
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center
+                      ${location.pathname === '/messaging'
+                        ? 'text-primary bg-primary/5'
+                        : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
+                      }`}
+                  >
+                    <MessageSquare className="h-4 w-4 mr-2" />
+                    Messaging
+                  </Link>
+                </>
+              ) : (
+                navItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center
+                      ${location.pathname === item.path
+                        ? 'text-primary bg-primary/5'
+                        : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
+                      }`}
+                  >
+                    {item.icon}
+                    {item.name}
+                  </Link>
+                ))
+              )}
             </div>
           </div>
           
@@ -249,20 +307,69 @@ const Navbar: React.FC<NavbarProps> = ({
       {/* Mobile menu */}
       <div className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 glass-panel">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              to={item.path}
-              className={`block px-3 py-2 rounded-md text-base font-medium flex items-center
-                ${location.pathname === item.path
-                  ? 'text-primary bg-primary/5'
-                  : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
-                }`}
-            >
-              {item.icon}
-              {item.name}
-            </Link>
-          ))}
+          {isAuthenticated ? (
+            <>
+              <Link
+                to={getDashboardPath()}
+                className={`block px-3 py-2 rounded-md text-base font-medium flex items-center
+                  ${location.pathname === getDashboardPath()
+                    ? 'text-primary bg-primary/5'
+                    : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
+                  }`}
+              >
+                <Home className="h-4 w-4 mr-2" />
+                Dashboard
+              </Link>
+              <Link
+                to="/learning-insights"
+                className={`block px-3 py-2 rounded-md text-base font-medium flex items-center
+                  ${location.pathname === '/learning-insights'
+                    ? 'text-primary bg-primary/5'
+                    : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
+                  }`}
+              >
+                <BrainCircuit className="h-4 w-4 mr-2" />
+                Learning Insights
+              </Link>
+              <Link
+                to="/community"
+                className={`block px-3 py-2 rounded-md text-base font-medium flex items-center
+                  ${location.pathname === '/community'
+                    ? 'text-primary bg-primary/5'
+                    : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
+                  }`}
+              >
+                <Users className="h-4 w-4 mr-2" />
+                Community
+              </Link>
+              <Link
+                to="/messaging"
+                className={`block px-3 py-2 rounded-md text-base font-medium flex items-center
+                  ${location.pathname === '/messaging'
+                    ? 'text-primary bg-primary/5'
+                    : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
+                  }`}
+              >
+                <MessageSquare className="h-4 w-4 mr-2" />
+                Messaging
+              </Link>
+            </>
+          ) : (
+            navItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                className={`block px-3 py-2 rounded-md text-base font-medium flex items-center
+                  ${location.pathname === item.path
+                    ? 'text-primary bg-primary/5'
+                    : 'text-foreground/80 hover:text-primary hover:bg-primary/5'
+                  }`}
+              >
+                {item.icon}
+                {item.name}
+              </Link>
+            ))
+          )}
           
           {!isAuthenticated && (
             <div className="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">
