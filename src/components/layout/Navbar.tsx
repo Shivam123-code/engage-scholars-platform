@@ -62,9 +62,9 @@ const Navbar: React.FC<NavbarProps> = ({
           </div>
           
           {/* Desktop navigation */}
-          <div className="hidden md:block">
+          <div className="hidden md:block flex-1">
             <div className="ml-10 flex items-center space-x-4">
-              <NavLinks userRole={userRole} />
+              <NavLinks userRole={userRole} showButtons={isAuthenticated} />
             </div>
           </div>
           
