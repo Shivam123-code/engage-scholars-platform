@@ -32,6 +32,11 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     // Dispatch an event to notify other components about the language change
     const event = new CustomEvent("languageChange", { detail: { language } });
     window.dispatchEvent(event);
+    
+    // Update document language attribute for accessibility
+    document.documentElement.lang = language;
+    
+    console.log(`Language changed to: ${language}`);
   }, [language]);
 
   return (

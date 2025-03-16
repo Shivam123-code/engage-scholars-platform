@@ -5,6 +5,7 @@ import LoginForm from "@/components/auth/LoginForm";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "@/components/common/LanguageSwitcher";
 
 const Login = () => {
   const { t } = useLanguage();
@@ -20,8 +21,8 @@ const Login = () => {
     setTimeout(() => {
       setIsLoading(false);
       toast({
-        title: "Logged In Successfully",
-        description: `Welcome back! You are logged in as a ${role}.`,
+        title: t.loggedInSuccessfully || "Logged In Successfully",
+        description: `${t.welcomeBack || "Welcome back"}! ${t.loggedInAs || "You are logged in as a"} ${role}.`,
       });
       
       // Redirect based on role
@@ -39,12 +40,17 @@ const Login = () => {
         <h1 className="text-3xl font-bold text-center mb-6 text-foreground">ParentConnect</h1>
         <LoginForm onLogin={handleLogin} isLoading={isLoading} />
         
+        {/* Language switcher at the top right */}
+        <div className="absolute top-4 right-4 z-10">
+          <LanguageSwitcher />
+        </div>
+        
         <Card className="mt-8 glass-card">
           <CardContent className="pt-6">
             <div className="text-sm text-muted-foreground">
-              <p className="mb-2"><strong>For Demo Purposes:</strong></p>
-              <p>You can enter any email and password to simulate login.</p>
-              <p>Actual authentication will be implemented with Supabase.</p>
+              <p className="mb-2"><strong>{t.forDemoPurposes || "For Demo Purposes"}:</strong></p>
+              <p>{t.demoLoginInfo || "You can enter any email and password to simulate login."}</p>
+              <p>{t.authImplementationNote || "Actual authentication will be implemented with Supabase."}</p>
             </div>
           </CardContent>
         </Card>

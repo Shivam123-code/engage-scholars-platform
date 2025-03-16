@@ -29,12 +29,12 @@ const ForgotPassword = () => {
     setError("");
     
     if (!email) {
-      setError(t.emailRequired);
+      setError(t.emailRequired || "Email is required");
       return;
     }
     
     if (!/\S+@\S+\.\S+/.test(email)) {
-      setError(t.emailInvalid);
+      setError(t.emailInvalid || "Email is invalid");
       return;
     }
     
@@ -45,8 +45,8 @@ const ForgotPassword = () => {
       setIsLoading(false);
       setIsSubmitted(true);
       toast({
-        title: "Reset Link Sent",
-        description: "If an account exists with this email, you will receive a password reset link.",
+        title: t.resetLinkSent || "Reset Link Sent",
+        description: t.resetLinkSentDesc || "If an account exists with this email, you will receive a password reset link.",
       });
     }, 1500);
   };
@@ -64,12 +64,12 @@ const ForgotPassword = () => {
         <Card className="glass-card">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold text-center">
-              {isSubmitted ? "Check Your Email" : "Reset Your Password"}
+              {isSubmitted ? (t.checkYourEmail || "Check Your Email") : (t.resetYourPassword || "Reset Your Password")}
             </CardTitle>
             <CardDescription className="text-center">
               {isSubmitted 
-                ? "We've sent you a password reset link if the email exists in our system."
-                : "Enter your email and we'll send you a link to reset your password"}
+                ? (t.resetEmailSent || "We've sent you a password reset link if the email exists in our system.")
+                : (t.resetPasswordInstructions || "Enter your email and we'll send you a link to reset your password")}
             </CardDescription>
           </CardHeader>
           
@@ -77,11 +77,11 @@ const ForgotPassword = () => {
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="email">{t.email}</Label>
+                  <Label htmlFor="email">{t.email || "Email"}</Label>
                   <Input
                     id="email"
                     type="email"
-                    placeholder="name@example.com"
+                    placeholder={t.emailPlaceholder || "name@example.com"}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className={error ? "border-destructive" : ""}
@@ -95,7 +95,7 @@ const ForgotPassword = () => {
                   className="w-full"
                   disabled={isLoading}
                 >
-                  {isLoading ? "Sending..." : "Send Reset Link"}
+                  {isLoading ? (t.sending || "Sending...") : (t.sendResetLink || "Send Reset Link")}
                 </Button>
               </form>
             </CardContent>
@@ -103,14 +103,14 @@ const ForgotPassword = () => {
             <CardContent>
               <div className="space-y-4">
                 <p className="text-center text-muted-foreground">
-                  Didn't receive an email? Check your spam folder or verify your email address.
+                  {t.noEmailReceived || "Didn't receive an email? Check your spam folder or verify your email address."}
                 </p>
                 <Button 
                   onClick={() => setIsSubmitted(false)} 
                   variant="outline"
                   className="w-full"
                 >
-                  Try another email
+                  {t.tryAnotherEmail || "Try another email"}
                 </Button>
               </div>
             </CardContent>
@@ -118,9 +118,9 @@ const ForgotPassword = () => {
           
           <CardFooter className="flex flex-col space-y-2">
             <div className="text-sm text-center text-muted-foreground">
-              Remember your password?{" "}
-              <Link to="/login" className="text-primary hover:underline">
-                {t.backToLogin}
+              {t.rememberPassword || "Remember your password?"}
+              <Link to="/login" className="text-primary hover:underline ml-1">
+                {t.backToLogin || "Back to Login"}
               </Link>
             </div>
           </CardFooter>

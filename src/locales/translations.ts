@@ -57,7 +57,35 @@ export const translations = {
     translationTargetLang: "Translation target language set to",
     typeMessage: "Type a message...",
     today: "Today",
-    active: "Active"
+    active: "Active",
+    // Footer translations
+    allRightsReserved: "All rights reserved.",
+    privacyPolicy: "Privacy Policy",
+    termsOfService: "Terms of Service",
+    support: "Support",
+    // Login page
+    loggedInSuccessfully: "Logged In Successfully",
+    welcomeBack: "Welcome back",
+    loggedInAs: "You are logged in as a",
+    forDemoPurposes: "For Demo Purposes",
+    demoLoginInfo: "You can enter any email and password to simulate login.",
+    authImplementationNote: "Actual authentication will be implemented with Supabase.",
+    // Password reset
+    resetYourPassword: "Reset Your Password",
+    resetPasswordInstructions: "Enter your email and we'll send you a link to reset your password",
+    emailPlaceholder: "name@example.com",
+    sending: "Sending...",
+    sendResetLink: "Send Reset Link",
+    resetLinkSent: "Reset Link Sent",
+    resetLinkSentDesc: "If an account exists with this email, you will receive a password reset link.",
+    checkYourEmail: "Check Your Email",
+    resetEmailSent: "We've sent you a password reset link if the email exists in our system.",
+    noEmailReceived: "Didn't receive an email? Check your spam folder or verify your email address.",
+    tryAnotherEmail: "Try another email",
+    rememberPassword: "Remember your password?",
+    // Notifications
+    notifications: "Notifications",
+    noNotifications: "No new notifications"
   },
   es: {
     welcome: "Bienvenido a ParentConnect",
@@ -104,7 +132,35 @@ export const translations = {
     translationTargetLang: "Idioma de destino de traducción establecido a",
     typeMessage: "Escriba un mensaje...",
     today: "Hoy",
-    active: "Activo"
+    active: "Activo",
+    // Footer translations
+    allRightsReserved: "Todos los derechos reservados.",
+    privacyPolicy: "Política de Privacidad",
+    termsOfService: "Términos de Servicio",
+    support: "Soporte",
+    // Login page
+    loggedInSuccessfully: "Sesión Iniciada con Éxito",
+    welcomeBack: "¡Bienvenido de nuevo",
+    loggedInAs: "Has iniciado sesión como",
+    forDemoPurposes: "Para Fines de Demostración",
+    demoLoginInfo: "Puede ingresar cualquier correo electrónico y contraseña para simular el inicio de sesión.",
+    authImplementationNote: "La autenticación real se implementará con Supabase.",
+    // Password reset
+    resetYourPassword: "Restablece tu Contraseña",
+    resetPasswordInstructions: "Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña",
+    emailPlaceholder: "nombre@ejemplo.com",
+    sending: "Enviando...",
+    sendResetLink: "Enviar Enlace de Restablecimiento",
+    resetLinkSent: "Enlace de Restablecimiento Enviado",
+    resetLinkSentDesc: "Si existe una cuenta con este correo electrónico, recibirás un enlace para restablecer la contraseña.",
+    checkYourEmail: "Revisa tu Correo Electrónico",
+    resetEmailSent: "Te hemos enviado un enlace para restablecer la contraseña si el correo electrónico existe en nuestro sistema.",
+    noEmailReceived: "¿No recibiste un correo electrónico? Revisa tu carpeta de spam o verifica tu dirección de correo electrónico.",
+    tryAnotherEmail: "Probar con otro correo electrónico",
+    rememberPassword: "¿Recuerdas tu contraseña?",
+    // Notifications
+    notifications: "Notificaciones",
+    noNotifications: "No hay nuevas notificaciones"
   },
   fr: {
     welcome: "Bienvenue sur ParentConnect",
@@ -151,7 +207,35 @@ export const translations = {
     translationTargetLang: "Langue cible de traduction définie sur",
     typeMessage: "Tapez un message...",
     today: "Aujourd'hui",
-    active: "Actif"
+    active: "Actif",
+    // Footer translations
+    allRightsReserved: "Tous droits réservés.",
+    privacyPolicy: "Politique de Confidentialité",
+    termsOfService: "Conditions d'Utilisation",
+    support: "Support",
+    // Login page
+    loggedInSuccessfully: "Connecté avec Succès",
+    welcomeBack: "Bienvenue",
+    loggedInAs: "Vous êtes connecté en tant que",
+    forDemoPurposes: "À des Fins de Démonstration",
+    demoLoginInfo: "Vous pouvez entrer n'importe quel e-mail et mot de passe pour simuler la connexion.",
+    authImplementationNote: "L'authentification réelle sera implémentée avec Supabase.",
+    // Password reset
+    resetYourPassword: "Réinitialisez Votre Mot de Passe",
+    resetPasswordInstructions: "Entrez votre e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe",
+    emailPlaceholder: "nom@exemple.com",
+    sending: "Envoi en cours...",
+    sendResetLink: "Envoyer le Lien de Réinitialisation",
+    resetLinkSent: "Lien de Réinitialisation Envoyé",
+    resetLinkSentDesc: "Si un compte existe avec cet e-mail, vous recevrez un lien de réinitialisation de mot de passe.",
+    checkYourEmail: "Vérifiez Votre E-mail",
+    resetEmailSent: "Nous vous avons envoyé un lien de réinitialisation de mot de passe si l'e-mail existe dans notre système.",
+    noEmailReceived: "Vous n'avez pas reçu d'e-mail? Vérifiez votre dossier spam ou vérifiez votre adresse e-mail.",
+    tryAnotherEmail: "Essayer un autre e-mail",
+    rememberPassword: "Vous vous souvenez de votre mot de passe?",
+    // Notifications
+    notifications: "Notifications",
+    noNotifications: "Pas de nouvelles notifications"
   },
   zh: {
     welcome: "欢迎来到ParentConnect",
@@ -198,7 +282,35 @@ export const translations = {
     translationTargetLang: "翻译目标语言设置为",
     typeMessage: "输入消息...",
     today: "今天",
-    active: "积极的"
+    active: "积极的",
+    // Footer translations
+    allRightsReserved: "版权所有。",
+    privacyPolicy: "隐私政策",
+    termsOfService: "服务条款",
+    support: "支持",
+    // Login page
+    loggedInSuccessfully: "登录成功",
+    welcomeBack: "欢迎回来",
+    loggedInAs: "您已登录为",
+    forDemoPurposes: "演示用途",
+    demoLoginInfo: "您可以输入任何电子邮件和密码来模拟登录。",
+    authImplementationNote: "实际认证将使用Supabase实现。",
+    // Password reset
+    resetYourPassword: "重置您的密码",
+    resetPasswordInstructions: "输入您的电子邮件，我们将向您发送一个重置密码的链接",
+    emailPlaceholder: "name@example.com",
+    sending: "发送中...",
+    sendResetLink: "发送重置链接",
+    resetLinkSent: "重置链接已发送",
+    resetLinkSentDesc: "如果此电子邮件存在帐户，您将收到密码重置链接。",
+    checkYourEmail: "检查您的电子邮件",
+    resetEmailSent: "如果电子邮件存在于我们的系统中，我们已向您发送了密码重置链接。",
+    noEmailReceived: "没有收到电子邮件？检查您的垃圾邮件文件夹或验证您的电子邮件地址。",
+    tryAnotherEmail: "尝试另一个电子邮件",
+    rememberPassword: "记得您的密码？",
+    // Notifications
+    notifications: "通知",
+    noNotifications: "没有新通知"
   },
   ar: {
     welcome: "مرحبًا بك في ParentConnect",
@@ -245,7 +357,35 @@ export const translations = {
     translationTargetLang: "تم تعيين لغة الهدف للترجمة إلى",
     typeMessage: "اكتب رسالة...",
     today: "اليوم",
-    active: "نشط"
+    active: "نشط",
+    // Footer translations
+    allRightsReserved: "جميع الحقوق محفوظة.",
+    privacyPolicy: "سياسة الخصوصية",
+    termsOfService: "شروط الخدمة",
+    support: "الدعم",
+    // Login page
+    loggedInSuccessfully: "تم تسجيل الدخول بنجاح",
+    welcomeBack: "مرحبًا بعودتك",
+    loggedInAs: "لقد تم تسجيل دخولك بصفتك",
+    forDemoPurposes: "لأغراض العرض التوضيحي",
+    demoLoginInfo: "يمكنك إدخال أي بريد إلكتروني وكلمة مرور لمحاكاة تسجيل الدخول.",
+    authImplementationNote: "سيتم تنفيذ المصادقة الفعلية باستخدام Supabase.",
+    // Password reset
+    resetYourPassword: "إعادة تعيين كلمة المرور الخاصة بك",
+    resetPasswordInstructions: "أدخل بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور الخاصة بك",
+    emailPlaceholder: "name@example.com",
+    sending: "إرسال...",
+    sendResetLink: "إرسال رابط إعادة التعيين",
+    resetLinkSent: "تم إرسال رابط إعادة التعيين",
+    resetLinkSentDesc: "إذا كان هناك حساب بهذا البريد الإلكتروني، فستتلقى رابطًا لإعادة تعيين كلمة المرور.",
+    checkYourEmail: "تحقق من بريدك الإلكتروني",
+    resetEmailSent: "لقد أرسلنا لك رابطًا لإعادة تعيين كلمة المرور إذا كان البريد الإلكتروني موجودًا في نظامنا.",
+    noEmailReceived: "ألم تتلق رسالة بريد إلكتروني؟ تحقق من مجلد الرسائل غير المرغوب فيها أو تحقق من عنوان بريدك الإلكتروني.",
+    tryAnotherEmail: "جرب بريدًا إلكترونيًا آخر",
+    rememberPassword: "تتذكر كلمة المرور الخاصة بك؟",
+    // Notifications
+    notifications: "الإشعارات",
+    noNotifications: "لا توجد إشعارات جديدة"
   },
   hi: {
     welcome: "ParentConnect में आपका स्वागत है",
@@ -292,7 +432,35 @@ export const translations = {
     translationTargetLang: "अनुवाद लक्ष्य भाषा सेट की गई",
     typeMessage: "संदेश टाइप करें...",
     today: "आज",
-    active: "सक्रिय"
+    active: "सक्रिय",
+    // Footer translations
+    allRightsReserved: "सर्वाधिकार सुरक्षित।",
+    privacyPolicy: "गोपनीयता नीति",
+    termsOfService: "सेवा की शर्तें",
+    support: "समर्थन",
+    // Login page
+    loggedInSuccessfully: "सफलतापूर्वक लॉग इन किया गया",
+    welcomeBack: "वापसी पर स्वागत है",
+    loggedInAs: "आपने लॉग इन किया है",
+    forDemoPurposes: "डेमो उद्देश्यों के लिए",
+    demoLoginInfo: "आप लॉग इन का अनुकरण करने के लिए कोई भी ईमेल और पासवर्ड दर्ज कर सकते हैं।",
+    authImplementationNote: "वास्तविक प्रमाणीकरण Supabase के साथ लागू किया जाएगा।",
+    // Password reset
+    resetYourPassword: "अपना पासवर्ड रीसेट करें",
+    resetPasswordInstructions: "अपना ईमेल दर्ज करें और हम आपको अपना पासवर्ड रीसेट करने के लिए एक लिंक भेजेंगे",
+    emailPlaceholder: "name@example.com",
+    sending: "भेजा जा रहा है...",
+    sendResetLink: "रीसेट लिंक भेजें",
+    resetLinkSent: "रीसेट लिंक भेजा गया",
+    resetLinkSentDesc: "यदि इस ईमेल के साथ कोई खाता मौजूद है, तो आपको पासवर्ड रीसेट करने के लिए एक लिंक प्राप्त होगा।",
+    checkYourEmail: "अपना ईमेल जांचें",
+    resetEmailSent: "हमने आपको पासवर्ड रीसेट करने के लिए एक लिंक भेजा है यदि ईमेल हमारे सिस्टम में मौजूद है।",
+    noEmailReceived: "कोई ईमेल प्राप्त नहीं हुआ? अपने स्पैम फ़ोल्डर की जांच करें या अपने ईमेल पते को सत्यापित करें।",
+    tryAnotherEmail: "कोई अन्य ईमेल आज़माएं",
+    rememberPassword: "अपना पासवर्ड याद है?",
+    // Notifications
+    notifications: "सूचनाएं",
+    noNotifications: "कोई नई सूचना नहीं"
   },
   gu: {
     welcome: "ParentConnect માં આપનું સ્વાગત છે",
@@ -339,7 +507,35 @@ export const translations = {
     translationTargetLang: "અનુવાદ લક્ષ્ય ભા�ા સેટ કરી",
     typeMessage: "સંદેશ ટાઇપ કરો...",
     today: "આજે",
-    active: "સક્રિય"
+    active: "સક્રિય",
+    // Footer translations
+    allRightsReserved: "સર્વહક સ્વાધીન.",
+    privacyPolicy: "ગોપનીયતા નીતિ",
+    termsOfService: "સેવાની શરતો",
+    support: "આધાર",
+    // Login page
+    loggedInSuccessfully: "સફળતાપૂર્વક પ્રવેશ કર્યો",
+    welcomeBack: "પાછા સ્વાગત છે",
+    loggedInAs: "તમે આ તરીકે લૉગ ઇન થયા છો",
+    forDemoPurposes: "ડેમો હેતુઓ માટે",
+    demoLoginInfo: "તમે લૉગિનનું અનુકરણ કરવા માટે કોઈપણ ઇમેઇલ અને પાસવર્ડ દાખલ કરી શકો છો.",
+    authImplementationNote: "વાસ્તવિક પ્રમાણીકરણ સુપાબેસ સાથે અમલમાં આવશે.",
+    // Password reset
+    resetYourPassword: "તમારો પાસવર્ડ ફરીથી સેટ કરો",
+    resetPasswordInstructions: "તમારો ઇમેઇલ દાખલ કરો અને અમે તમને તમારો પાસવર્ડ ફરીથી સેટ કરવા માટે એક લિંક મોકલીશું",
+    emailPlaceholder: "name@example.com",
+    sending: "મોકલી રહ્યું છે...",
+    sendResetLink: "ફરીથી સેટ કરવાની લિંક મોકલો",
+    resetLinkSent: "ફરીથી સેટ કરવાની લિંક મોકલી",
+    resetLinkSentDesc: "જો આ ઇમેઇલ સાથે કોઈ ખાતું અસ્તિત્વમાં છે, તો તમને પાસવર્ડ ફરીથી સેટ કરવા માટે એક લિંક પ્રાપ્ત થશે.",
+    checkYourEmail: "તમારો ઇમેઇલ તપાસો",
+    resetEmailSent: "જો ઇમેઇલ અમારી સિસ્ટમમાં અસ્તિત્વમાં છે તો અમે તમને પાસવર્ડ ફરીથી સેટ કરવા માટે એક લિંક મોકલી છે.",
+    noEmailReceived: "કોઈ ઇમેઇલ મળ્યો નથી? તમારા સ્પામ ફોલ્ડરને તપાસો અથવા તમારા ઇમેઇલ સરનામાંને ચકાસો.",
+    tryAnotherEmail: "બીજો ઇમેઇલ અજમાવો",
+    rememberPassword: "તમારો પાસવર્ડ યાદ છે?",
+    // Notifications
+    notifications: "સૂચનાઓ",
+    noNotifications: "કોઈ નવી સૂચનાઓ નથી"
   },
   ja: {
     welcome: "ParentConnectへようこそ",
@@ -386,6 +582,34 @@ export const translations = {
     translationTargetLang: "翻訳先の言語が設定されました",
     typeMessage: "メッセージを入力...",
     today: "今日",
-    active: "アクティブ"
+    active: "アクティブ",
+    // Footer translations
+    allRightsReserved: "無断複写・転載を禁じます。",
+    privacyPolicy: "プライバシーポリシー",
+    termsOfService: "利用規約",
+    support: "サポート",
+    // Login page
+    loggedInSuccessfully: "ログインに成功しました",
+    welcomeBack: "おかえりなさい",
+    loggedInAs: "としてログインしました",
+    forDemoPurposes: "デモ用",
+    demoLoginInfo: "ログインをシミュレートするために、任意のメールアドレスとパスワードを入力できます。",
+    authImplementationNote: "実際の認証はSupabaseを使用して実装されます。",
+    // Password reset
+    resetYourPassword: "パスワードをリセット",
+    resetPasswordInstructions: "メールアドレスを入力すると、パスワードをリセットするためのリンクが送信されます",
+    emailPlaceholder: "name@example.com",
+    sending: "送信中...",
+    sendResetLink: "リセットリンクを送信",
+    resetLinkSent: "リセットリンクを送信しました",
+    resetLinkSentDesc: "このメールアドレスでアカウントが存在する場合、パスワードをリセットするためのリンクが送信されます。",
+    checkYourEmail: "メールを確認してください",
+    resetEmailSent: "メールがシステムに存在する場合、パスワードをリセットするためのリンクを送信しました。",
+    noEmailReceived: "メールが届きませんでしたか？スパムフォルダを確認するか、メールアドレスを確認してください。",
+    tryAnotherEmail: "別のメールを試してください",
+    rememberPassword: "パスワードを覚えていますか？",
+    // Notifications
+    notifications: "通知",
+    noNotifications: "新しい通知はありません"
   }
 };
