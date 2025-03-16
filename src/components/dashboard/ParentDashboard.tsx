@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Calendar, MessageSquare, Bell, ExternalLink, Book, PieChart, TrendingUp, UserCheck } from 'lucide-react';
+import { Calendar, MessageSquare, Bell, ExternalLink, Book, PieChart, TrendingUp, UserCheck, Users, BrainCircuit } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import EventCard, { EventProps } from '../events/EventCard';
 import StudentCard, { StudentProps } from '../students/StudentCard';
@@ -64,16 +64,28 @@ const ParentDashboard: React.FC<ParentDashboardProps> = ({
   
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Welcome, {parent.name}</h1>
           <p className="text-muted-foreground">Here's what's happening with your children today.</p>
         </div>
-        <div className="flex space-x-4">
+        <div className="flex flex-wrap gap-2">
           <Button variant="outline" asChild>
             <Link to="/messaging">
               <MessageSquare className="h-4 w-4 mr-2" />
               Messages
+            </Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link to="/community">
+              <Users className="h-4 w-4 mr-2" />
+              Community
+            </Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link to="/learning-insights">
+              <BrainCircuit className="h-4 w-4 mr-2" />
+              Learning Insights
             </Link>
           </Button>
           <Button asChild>

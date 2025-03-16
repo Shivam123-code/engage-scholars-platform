@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -9,7 +10,8 @@ import {
   PieChart, 
   TrendingUp, 
   UserCheck,
-  Bell 
+  Bell,
+  BrainCircuit 
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -95,7 +97,7 @@ const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
   
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Welcome, {teacher.name}</h1>
           <p className="text-muted-foreground">
@@ -103,11 +105,23 @@ const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
             {teacher.grade ? ` - Grade ${teacher.grade}` : ''}
           </p>
         </div>
-        <div className="flex space-x-4">
+        <div className="flex flex-wrap gap-2">
           <Button variant="outline" asChild>
             <Link to="/messaging">
               <MessageSquare className="h-4 w-4 mr-2" />
               Messages
+            </Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link to="/community">
+              <Users className="h-4 w-4 mr-2" />
+              Community
+            </Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link to="/learning-insights">
+              <BrainCircuit className="h-4 w-4 mr-2" />
+              Learning Insights
             </Link>
           </Button>
           <Button asChild>

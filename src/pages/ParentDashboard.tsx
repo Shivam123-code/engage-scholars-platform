@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Bell, Calendar, MessageSquare, BookOpen, LogOut, Send, PlusCircle } from "lucide-react";
+import { Bell, Calendar, MessageSquare, BookOpen, LogOut, Send, PlusCircle, Users, BrainCircuit } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { Avatar } from "@/components/ui/avatar";
@@ -42,11 +42,29 @@ const ParentDashboard = () => {
       </header>
       
       <main className="container mx-auto px-4 sm:px-6 py-8">
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold tracking-tight">Welcome, Parent!</h2>
-          <p className="text-muted-foreground">
-            Here's what's happening with your children's education.
-          </p>
+        <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight">Welcome, Parent!</h2>
+            <p className="text-muted-foreground">
+              Here's what's happening with your children's education.
+            </p>
+          </div>
+          
+          {/* Navigation buttons */}
+          <div className="flex flex-wrap gap-2">
+            <Button variant="outline" onClick={() => navigate("/messaging")}>
+              <MessageSquare className="h-4 w-4 mr-2" />
+              Messages
+            </Button>
+            <Button variant="outline" onClick={() => navigate("/community")}>
+              <Users className="h-4 w-4 mr-2" />
+              Community
+            </Button>
+            <Button variant="outline" onClick={() => navigate("/learning-insights")}>
+              <BrainCircuit className="h-4 w-4 mr-2" />
+              Learning Insights
+            </Button>
+          </div>
         </div>
         
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
