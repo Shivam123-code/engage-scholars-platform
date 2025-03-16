@@ -1,9 +1,7 @@
-
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, Languages } from "lucide-react";
@@ -11,8 +9,8 @@ import { useNavigate } from "react-router-dom";
 import ChatInterface, { Message, ChatUser } from "@/components/messaging/ChatInterface";
 import TranslationSettings from "@/components/messaging/TranslationSettings";
 import { useLanguage, languages } from "@/contexts/LanguageContext";
+import { useTranslation } from "@/hooks/use-translation";
 
-// Mock data
 const mockTeachers: ChatUser[] = [
   {
     id: "t1",
@@ -84,13 +82,17 @@ const Messaging = () => {
     role: "parent",
   });
   
-  // Translation settings
-  const [isTranslationEnabled, setIsTranslationEnabled] = useState(false);
-  const [sourceLanguage, setSourceLanguage] = useState(language);
-  const [targetLanguage, setTargetLanguage] = useState(language);
+  const {
+    isEnabled: isTranslationEnabled,
+    sourceLanguage,
+    targetLanguage,
+    toggleTranslation,
+    setSourceLanguage,
+    setTargetLanguage
+  } = useTranslation();
+  
   const [isTranslating, setIsTranslating] = useState(false);
   
-  // Update source and target languages when the app language changes
   useEffect(() => {
     setSourceLanguage(language);
     setTargetLanguage(language);
@@ -103,7 +105,6 @@ const Messaging = () => {
   }, [selectedTeacherId]);
   
   useEffect(() => {
-    // Auto-select the first teacher if none selected
     if (mockTeachers.length > 0 && !selectedTeacherId) {
       setSelectedTeacherId(mockTeachers[0].id);
     }
@@ -114,15 +115,12 @@ const Messaging = () => {
     
     let translatedContent = content;
     
-    // Simulate translation (in a real implementation, this would call a translation API)
     if (isTranslationEnabled && sourceLanguage !== targetLanguage) {
       setIsTranslating(true);
       
-      // Simulate translation delay
       setTimeout(() => {
         setIsTranslating(false);
         
-        // Add message to chat
         const newMessage: Message = {
           id: `m${Date.now()}`,
           senderId: currentUser.id,
@@ -134,10 +132,8 @@ const Messaging = () => {
         
         setMessages([...messages, newMessage]);
         
-        // Update mocked messages data
         mockMessages[selectedTeacherId] = [...(mockMessages[selectedTeacherId] || []), newMessage];
         
-        // Show translation notification
         if (isTranslationEnabled && sourceLanguage !== targetLanguage) {
           toast({
             title: t.messageTranslated || "Message Translated",
@@ -150,7 +146,6 @@ const Messaging = () => {
         }
       }, 1000);
     } else {
-      // Add message directly without translation
       const newMessage: Message = {
         id: `m${Date.now()}`,
         senderId: currentUser.id,
@@ -162,7 +157,6 @@ const Messaging = () => {
       
       setMessages([...messages, newMessage]);
       
-      // Update mocked messages data
       mockMessages[selectedTeacherId] = [...(mockMessages[selectedTeacherId] || []), newMessage];
     }
   };
@@ -254,7 +248,7 @@ const Messaging = () => {
             
             <TranslationSettings 
               enabled={isTranslationEnabled}
-              onToggle={() => setIsTranslationEnabled(!isTranslationEnabled)}
+              onToggle={toggleTranslation}
               sourceLanguage={sourceLanguage}
               targetLanguage={targetLanguage}
               onLanguageChange={handleLanguageChange}

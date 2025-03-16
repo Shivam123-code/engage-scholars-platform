@@ -7,6 +7,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Notification {
   id: number;
@@ -18,6 +19,8 @@ interface NotificationsMenuProps {
 }
 
 const NotificationsMenu: React.FC<NotificationsMenuProps> = ({ notifications }) => {
+  const { t } = useLanguage();
+  
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -30,7 +33,7 @@ const NotificationsMenu: React.FC<NotificationsMenuProps> = ({ notifications }) 
       </PopoverTrigger>
       <PopoverContent className="w-80 p-0" align="end">
         <div className="border-b px-4 py-3">
-          <h4 className="text-sm font-semibold">Notifications</h4>
+          <h4 className="text-sm font-semibold">{t.notifications || "Notifications"}</h4>
         </div>
         {notifications.length > 0 ? (
           <div>
@@ -45,7 +48,7 @@ const NotificationsMenu: React.FC<NotificationsMenuProps> = ({ notifications }) 
           </div>
         ) : (
           <div className="px-4 py-6 text-center text-muted-foreground">
-            <p>No new notifications</p>
+            <p>{t.noNotifications || "No new notifications"}</p>
           </div>
         )}
       </PopoverContent>

@@ -15,6 +15,7 @@ import LearningInsights from "./pages/LearningInsights";
 import Community from "./pages/Community";
 import Messaging from "./pages/Messaging";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import TranslationMenuButton from "./components/layout/navigation/TranslationMenuButton";
 
 const queryClient = new QueryClient();
 
